@@ -5,15 +5,17 @@ class MenosMoedas {
         int[] moedas = { 100, 50, 25, 10, 5, 1 };
         int[] qntMoedas = { 0, 0, 0, 0, 0, 0 };
         int centavos;
-        Scanner teclado = new Scanner(System.in);
+        //usando o try para nao ter memory leak, quando usa o recurso tem que fechar quando para de usar, o try with resources meio que fecha sozinho.
+        try (Scanner teclado = new Scanner(System.in)) {
 
-        System.out.println("Digite o valor em centavos: ");
-        centavos = teclado.nextInt();
-        for (int i = 0; i < moedas.length; i++) {
-            qntMoedas[i] = centavos / moedas[i];
-            centavos = centavos % moedas[i];
-            System.out.println(qntMoedas[i] + " Moedas de " + moedas[i] + " centavos");
+            System.out.println("Digite o valor em centavos: ");
+            centavos = teclado.nextInt();
+            for (int i = 0; i < moedas.length; i++) {
+                qntMoedas[i] = centavos / moedas[i];
+                centavos = centavos % moedas[i];
+                System.out.println(qntMoedas[i] + " Moedas de " + moedas[i] + " centavos");
 
+            }
         }
 
     }
